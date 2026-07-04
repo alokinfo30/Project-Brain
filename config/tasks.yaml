@@ -1,0 +1,120 @@
+# config/tasks.yaml
+task_breakdown:
+  description: |
+    Break down the following project into detailed tasks:
+    
+    Project Type: {project_type}
+    Project Objectives: {project_objectives}
+    Industry: {industry}
+    Team Members: {team_members}
+    Project Requirements: {project_requirements}
+    
+    Create a comprehensive task breakdown that includes:
+    1. Clear task names and descriptions
+    2. Task dependencies and order
+    3. Estimated complexity levels
+    4. Required skills for each task
+    5. Deliverables for each task
+  expected_output: |
+    A detailed task breakdown with clear task names, descriptions, dependencies,
+    complexity levels, required skills, and deliverables.
+  agent: project_planning_agent
+
+time_resource_estimation:
+  description: |
+    Based on the following project details and task breakdown, provide accurate
+    time and resource estimates:
+    
+    Project Type: {project_type}
+    Project Objectives: {project_objectives}
+    Industry: {industry}
+    Team Members: {team_members}
+    Project Requirements: {project_requirements}
+    
+    For each task, estimate:
+    1. Time required in hours
+    2. Resources needed (team members, tools, skills)
+    3. Dependencies between tasks
+    4. Potential risks and buffers
+  expected_output: |
+    A comprehensive estimation report with time requirements for each task,
+    resource requirements, dependencies, and risk buffers.
+  agent: estimation_agent
+
+resource_allocation:
+  description: |
+    Create an optimal resource allocation plan based on the task breakdown and
+    estimations:
+    
+    Project Type: {project_type}
+    Project Objectives: {project_objectives}
+    Industry: {industry}
+    Team Members: {team_members}
+    Project Requirements: {project_requirements}
+    
+    The plan should include:
+    1. Task assignments to specific team members
+    2. Start and end dates for each task
+    3. Milestones with deadlines
+    4. Resource utilization across the timeline
+    5. Buffer for unexpected delays
+  expected_output: |
+    A comprehensive resource allocation plan with task assignments, timelines,
+    milestones, and resource utilization analysis.
+  agent: resource_allocation_agent
+
+data_collection:
+  description: |
+    Collect project data from Trello board and organize it for analysis.
+    
+    Use the BoardDataFetcherTool to fetch all cards, their details, comments,
+    and activity logs. Then use CardDataFetcherTool to get detailed information
+    about specific cards if needed.
+    
+    Organize the collected data into a structured format including:
+    1. List of all cards with their statuses
+    2. Card details (name, description, due date, labels)
+    3. Comments and activity logs
+    4. Card assignments and progress
+    5. Overall board statistics
+  expected_output: |
+    A comprehensive dataset containing all Trello board information in a
+    structured format ready for analysis.
+  agent: data_collection_agent
+
+data_analysis:
+  description: |
+    Analyze the collected project data to generate insights about project progress.
+    
+    Based on the Trello board data, provide analysis on:
+    1. Overall project progress (percentage complete)
+    2. Task completion rates by list/status
+    3. Bottlenecks and blockers
+    4. Team performance metrics
+    5. Upcoming deadlines and milestones
+    6. Risk assessment and issues
+    7. Recommendations for improvement
+  expected_output: |
+    A detailed analysis report with key metrics, insights, and recommendations
+    for improving project progress.
+  agent: analysis_agent
+
+report_generation:
+  description: |
+    Generate a comprehensive project progress report based on the analysis.
+    
+    The report should include:
+    1. Executive Summary
+    2. Project Overview and Status
+    3. Task Completion Analysis
+    4. Team Performance Metrics
+    5. Risk Assessment
+    6. Recommendations
+    7. Next Steps
+    
+    Format the report professionally with clear sections and data visualization
+    recommendations.
+  expected_output: |
+    A well-structured project progress report in markdown format with all
+    sections, metrics, and actionable recommendations.
+  agent: analysis_agent

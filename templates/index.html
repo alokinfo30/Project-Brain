@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Project Planner & Progress Reporter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📋 AI Project Planner & Progress Reporter</h1>
+            <p class="subtitle">Multi-Agent System for Planning, Estimation, Allocation & Progress Reporting</p>
+            <div class="badges">
+                <span class="badge">🤖 5 Agents</span>
+                <span class="badge">⚡ Multi-Model</span>
+                <span class="badge">🔄 Auto-Fallback</span>
+                <span class="badge">📊 Trello Integration</span>
+            </div>
+        </header>
+
+        <!-- Tabs -->
+        <nav class="tabs">
+            <button class="tab active" data-tab="planning">📋 Planning</button>
+            <button class="tab" data-tab="progress">📊 Progress Report</button>
+        </nav>
+
+        <main>
+            <!-- Model Status -->
+            <div id="modelStatus" class="model-status">
+                <h3>📊 Available Models</h3>
+                <div id="modelList" class="model-grid">Loading models...</div>
+            </div>
+
+            <!-- Tab 1: Planning -->
+            <section id="planningTab" class="tab-content active">
+                <div class="input-section">
+                    <h2>📝 Project Details</h2>
+                    <form id="projectForm">
+                        <div class="form-group">
+                            <label for="projectType">Project Type *</label>
+                            <input type="text" id="projectType" name="projectType" value="Website" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectObjectives">Project Objectives *</label>
+                            <textarea id="projectObjectives" name="projectObjectives" rows="3" required>Create a website for a small business</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="industry">Industry *</label>
+                            <input type="text" id="industry" name="industry" value="Technology" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="teamMembers">Team Members</label>
+                            <textarea id="teamMembers" name="teamMembers" rows="4">- John Doe (Project Manager)
+- Jane Doe (Software Engineer)
+- Bob Smith (Designer)
+- Alice Johnson (QA Engineer)</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectRequirements">Project Requirements</label>
+                            <textarea id="projectRequirements" name="projectRequirements" rows="6">- Create a responsive design
+- Implement modern UI
+- Develop user-friendly navigation
+- Include About Us, Services, Contact Us pages
+- Implement blog section
+- Optimize for SEO</textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" id="generateBtn">
+                            🚀 Generate Project Plan
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Processing -->
+                <div id="processing" class="processing hidden">
+                    <div class="spinner"></div>
+                    <h3>🔄 Generating Project Plan...</h3>
+                    <div class="agent-status">
+                        <span id="agent1">⏳ Planning Agent: Idle</span>
+                        <span id="agent2">⏳ Estimation Agent: Idle</span>
+                        <span id="agent3">⏳ Allocation Agent: Idle</span>
+                    </div>
+                    <div id="progressLog" class="progress-log"></div>
+                </div>
+
+                <!-- Results -->
+                <div id="results" class="results hidden">
+                    <div class="results-header">
+                        <h2>📋 Project Plan</h2>
+                        <button id="exportBtn" class="btn-secondary">📥 Export</button>
+                    </div>
+                    <div id="planContent" class="plan-content"></div>
+                </div>
+            </section>
+
+            <!-- Tab 2: Progress Report -->
+            <section id="progressTab" class="tab-content hidden">
+                <div class="input-section">
+                    <h2>📊 Generate Progress Report</h2>
+                    <p style="color: #aaa; margin-bottom: 15px;">
+                        This will fetch data from your Trello board and generate a comprehensive 
+                        project progress report with metrics, insights, and recommendations.
+                    </p>
+                    <button id="reportBtn" class="btn-primary">
+                        📊 Generate Progress Report
+                    </button>
+                </div>
+
+                <!-- Report Processing -->
+                <div id="reportProcessing" class="processing hidden">
+                    <div class="spinner"></div>
+                    <h3>🔄 Generating Progress Report...</h3>
+                    <div class="agent-status">
+                        <span id="reportAgent1">⏳ Data Collection: Idle</span>
+                        <span id="reportAgent2">⏳ Analysis Agent: Idle</span>
+                    </div>
+                    <div id="reportProgressLog" class="progress-log"></div>
+                </div>
+
+                <!-- Report Results -->
+                <div id="reportResults" class="results hidden">
+                    <div class="results-header">
+                        <h2>📊 Project Progress Report</h2>
+                        <button id="exportReportBtn" class="btn-secondary">📥 Export</button>
+                    </div>
+                    <div id="reportContent" class="plan-content"></div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Powered by CrewAI Multi-Agent System & OpenRouter</p>
+            <p class="footer-sub">Auto-fallback between OpenAI, Mistral, Llama & DeepSeek models</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
