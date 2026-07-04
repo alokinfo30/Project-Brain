@@ -3,5 +3,6 @@ Flask-Cors
 python-dotenv
 crewai
 openai
+crewai-tools
 langchain-openai
 pydantic
