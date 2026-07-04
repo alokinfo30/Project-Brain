@@ -3,7 +3,7 @@ import os
 import logging
 from crewai import Agent
 from app.model_manager import model_manager
-from app.tools import BoardDataFetcherTool, CardDataFetcherTool, BoardListFetcherTool
+from app.tools import board_data_fetcher_tool, card_data_fetcher_tool, board_list_fetcher_tool
 
 logger = logging.getLogger(__name__)
 
@@ -68,11 +68,6 @@ def create_data_collection_agent():
     config = model_manager.get_model_config('data_collection_agent')
     llm = model_manager.get_llm(config['model'], config.get('temperature', 0.3))
     
-    # Initialize tools
-    board_tool = BoardDataFetcherTool()
-    card_tool = CardDataFetcherTool()
-    list_tool = BoardListFetcherTool()
-    
     return Agent(
         role="Data Collection Specialist",
         goal="Collect and organize project data from external sources like Trello",
@@ -85,7 +80,7 @@ def create_data_collection_agent():
         allow_delegation=False,
         verbose=True,
         llm=llm,
-        tools=[board_tool, card_tool, list_tool]
+        tools=[board_data_fetcher_tool, card_data_fetcher_tool, board_list_fetcher_tool]
     )
 
 def create_analysis_agent():
